@@ -3,7 +3,7 @@ import time
 import requests
 import scrapy
 from project_folder.items import DemoDownloaderItem
-from project_folder.lib.celesc_urls import CelescUrls
+from project_folder.lib.utils import CelescUrls
 from scrapy.utils.response import open_in_browser
 
 from scrapy.crawler import CrawlerProcess
@@ -116,31 +116,7 @@ class CelescLoginSpider(scrapy.Spider):
         )
 
     def get_historico_pagto(self, response):
-        """
-        Tenho que acessar via href mesmo.
-        :param response:
-        :return:
-        """
         self.log('Accessing page: {}'.format(response.url))
-
-        # pages_list = [1, 2, 3, 4, 5, 6]  # no max ultimos 60 meses, coisa do site da celesc
-        #
-        # base_url = CelescUrls.URL_LISTA_HIST_FATURAS.value
-
-        # pagination_url = "listaHistoricoFaturas.jsp?d-1335161-p={}"
-
-        # for page in pages_list:
-        #     #completed_url = base_url + "/" + pagination_url.format(page)
-        #     #print(f"->>- completed_url: {completed_url}")
-        #
-        #     print(f"->>- base_url.format(page): {base_url.format(page)}")
-        #
-        #     return scrapy.Request(
-        #         url=base_url.format(page),
-        #         callback=self.download_pdf,
-        #         # dont_filter=True,
-        #     # meta={'cookiejar': response.meta['cookiejar']},
-        #     )
 
         return scrapy.Request(
             url=CelescUrls.URL_HIST_PAGAMENTO.value,
@@ -168,7 +144,7 @@ class CelescLoginSpider(scrapy.Spider):
             )
 
     def download_pdf(self, response):
-        open_in_browser(response)
+        # open_in_browser(response)
 
         pdfs_url = "//body/div/div/div[3]/table[2]//tr[6]//table/tbody/tr/following::td[2]/a[contains(@href, 'imprimirSegundaVia')]"
 

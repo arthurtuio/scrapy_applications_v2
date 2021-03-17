@@ -1,7 +1,7 @@
 import os
 import time
 from scrapy.settings import Settings
-from project_folder.spiders.celesc_post_login import CelescLoginSpider
+from project_folder.spiders.celesc_post_login_pdfs import CelescLoginSpider
 from scrapy.crawler import CrawlerProcess
 
 from twisted.internet import reactor
@@ -52,6 +52,7 @@ class ScrapyExecutor:
             self._scrapy_paroquia_repository = CredentialsParoquia(pg_conn)
 
             for credential in self._get_all_not_synced_credentials():
+                print(f"-> credential: {credential}")
                 execute_scrapy()
                 self._update_first_not_synced_credential()
                 self._rename_output_based_on_credentials(credential)
