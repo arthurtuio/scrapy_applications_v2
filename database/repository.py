@@ -26,7 +26,7 @@ class CredentialsParoquia:
             SELECT 
                 *
             FROM 
-                scrapy.credentials_paroquia
+                scrapy.credentials_paroquia_sem_datas
             WHERE 
                 sync_status IS false
         """
@@ -34,13 +34,13 @@ class CredentialsParoquia:
     @staticmethod
     def _sync_first_not_synced_credential_sql_template():
         return """
-            UPDATE scrapy.credentials_paroquia
+            UPDATE scrapy.credentials_paroquia_sem_datas
             SET
                 updated_at = now(),
                 sync_status = True
             WHERE id = (
                 SELECT id 
-                FROM scrapy.credentials_paroquia
+                FROM scrapy.credentials_paroquia_sem_datas
                 WHERE sync_status IS False
                 ORDER BY created_at
                 LIMIT 1

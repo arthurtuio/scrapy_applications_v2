@@ -8,7 +8,10 @@
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 import os
+
 from scrapy.settings import Settings
+from project_folder.lib.utils import FolderVariables
+
 
 settings = Settings()
 os.environ['SCRAPY_SETTINGS_MODULE'] = 'project_folder.settings'  #
@@ -80,7 +83,7 @@ ITEM_PIPELINES = {
     'scrapy_save_as_pdf.pipelines.SaveAsPdfPipeline': -1,
 }
 
-FILES_STORE = '/home/arthur/personal_projects/scrapy_celesc/project_folder/project_folder/downloads'
+FILES_STORE = FolderVariables.DOWNLOADS_FOLDER.value
 
 # # save-as-pdf: https://github.com/etng/scrapy-save-as-pdf
 # PROXY = ""

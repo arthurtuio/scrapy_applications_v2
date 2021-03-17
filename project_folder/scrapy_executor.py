@@ -12,7 +12,7 @@ from scrapy.utils.log import configure_logging
 from database.postgres_connector import PostgresConnector
 from database.repository import CredentialsParoquia
 
-from output_parser.os_utils import rename_scrapy_output_based_in_credentials
+from output_parser.rename_scrapy_output import rename_scrapy_output_based_in_credentials
 
 
 def execute_scrapy():
@@ -55,7 +55,7 @@ class ScrapyExecutor:
                 print(f"-> credential: {credential}")
                 execute_scrapy()
                 self._update_first_not_synced_credential()
-                self._rename_output_based_on_credentials(credential)
+                # self._rename_output_based_on_credentials(credential)
 
             pg_conn.commit()
 

@@ -3,7 +3,7 @@ import time
 import requests
 import scrapy
 from project_folder.items import DemoDownloaderItem
-from project_folder.lib.utils import CelescUrls
+from project_folder.lib.utils import CelescUrls, FolderVariables
 from scrapy.utils.response import open_in_browser
 
 from scrapy.crawler import CrawlerProcess
@@ -23,6 +23,8 @@ def get_first_not_synced_credential_from_db():
 
         pg_conn.commit()
 
+    print(f"First Not synced credential: {all_not_synced_credentials[0]}")
+
     return all_not_synced_credentials[0]
 
 
@@ -32,60 +34,9 @@ class CelescLoginSpider(scrapy.Spider):
         CelescUrls.URL_AUTENTICACAO.value,
     ]
 
-    # LISTA_PARAMS_UCS = [
-    #     {
-    #         "unidade_consumidora": '10303826',
-    #         "tipo_documento": 'CPJ',
-    #         "numero_doc_cpf": '84708478006010',
-    #         "numero_doc_cpj": '84708478006010',
-    #         "tipo_usuario": 'clienteUnCons',
-    #         "password": 'pfin60',
-    #         "mesInicial": '03',
-    #         "anoInicial": '2019',
-    #         "mesFinal": '03',
-    #         "anoFinal": '2021',
-    #     },
-    #     {
-    #         "unidade_consumidora": '10303826',
-    #         "tipo_documento": 'CPJ',
-    #         "numero_doc_cpf": '84708478006010',
-    #         "numero_doc_cpj": '84708478006010',
-    #         "tipo_usuario": 'clienteUnCons',
-    #         "password": 'pfin60',
-    #         "mesInicial": '03',
-    #         "anoInicial": '2020',
-    #         "mesFinal": '03',
-    #         "anoFinal": '2021',
-    #     },
-    # ]
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.credentials = get_first_not_synced_credential_from_db()
-
-    # def start_requests(self):
-    #     requests = []
-    #
-    #     for i, account in enumerate(self.LISTA_PARAMS_UCS):
-    #         print(f"account: {account}")
-    #
-    #         request = scrapy.Request(
-    #             url=CelescUrls.URL_AUTENTICACAO.value,
-    #             callback=self.parse,
-    #         )
-    #
-    #         request.meta['cookiejar'] = i
-    #         requests.append(request)
-    #
-    #     return requests
-
-        # request = scrapy.Request(
-        #     url=CelescUrls.URL_AUTENTICACAO.value,
-        #     callback=self.parse,
-        # )
-        #
-        # self.log("Successfully Scraped pages!")
-        # return request
 
     def parse(self, response):
         self.log('Accessing page: {}'.format(response.url))
@@ -181,7 +132,7 @@ class CelescLoginSpider(scrapy.Spider):
 
         self.contador_legal += 1
 
-        download_folder = "/home/arthur/personal_projects/scrapy_celesc/project_folder/project_folder/downloads/"
+        download_folder = FolderVariables.DOWNLOADS_FOLDER.value
 
         self.logger.info('-> Saving PDF %s', path)
         with open(
