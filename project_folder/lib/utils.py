@@ -18,5 +18,6 @@ class CelescUrls(Enum):
     
     
 class FolderVariables(Enum):
-    DOWNLOADS_FOLDER = _base_project_folder() + "project_folder/downloads/"
+    PDF_DOWNLOADS_FOLDER = _base_project_folder() + "project_folder/downloads/"
     SPIDERS_FOLDER = _base_project_folder() + "project_folder/spiders"
+    TXT_FILES_FOLDER = _base_project_folder() + "files/txt_files/"

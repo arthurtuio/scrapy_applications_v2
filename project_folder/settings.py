@@ -83,7 +83,7 @@ ITEM_PIPELINES = {
     'scrapy_save_as_pdf.pipelines.SaveAsPdfPipeline': -1,
 }
 
-FILES_STORE = FolderVariables.DOWNLOADS_FOLDER.value
+FILES_STORE = FolderVariables.PDF_DOWNLOADS_FOLDER.value
 
 # # save-as-pdf: https://github.com/etng/scrapy-save-as-pdf
 # PROXY = ""

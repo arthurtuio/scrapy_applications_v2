@@ -132,7 +132,7 @@ class CelescLoginSpider(scrapy.Spider):
 
         self.contador_legal += 1
 
-        download_folder = FolderVariables.DOWNLOADS_FOLDER.value
+        download_folder = FolderVariables.PDF_DOWNLOADS_FOLDER.value
 
         self.logger.info('-> Saving PDF %s', path)
         with open(

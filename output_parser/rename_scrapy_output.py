@@ -4,7 +4,7 @@ import os
 from project_folder.lib.utils import FolderVariables
 
 
-DOWNLOAD_PATH = FolderVariables.DOWNLOADS_FOLDER.value
+DOWNLOAD_PATH = FolderVariables.PDF_DOWNLOADS_FOLDER.value
 SELECTED_FORMAT = ".pdf"
 
 
