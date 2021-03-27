@@ -9,8 +9,12 @@ class FaturasTxtParser:
 
     def execute(self):
         for fatura in self._load_faturas():
+            print("####")
+            print(fatura)
             content = self._get_fatura_content(fatura)
             grupo_tarifario = self._categorize_in_grupo_tarifario(content)
+
+            # print(grupo_tarifario)
 
             self._parse_according_to_grupo_tarifario(grupo_tarifario, content)
 
@@ -18,13 +22,16 @@ class FaturasTxtParser:
         return list_all_dir_files(self.TXT_FILES_FOLDER)
 
     def _get_fatura_content(self, fatura):
-        with open(self.TXT_FILES_FOLDER + fatura) as fp:
-            all_content = fp.read()
-            lines = fp.readlines()
-            return {
-                "all_content": all_content,
-                "lines": lines,
-            }
+        fp = open(self.TXT_FILES_FOLDER + fatura, "r")
+        lines = fp.readlines()
+
+        fp = open(self.TXT_FILES_FOLDER + fatura, "r")
+        all_content = fp.read()
+
+        return {
+            "all_content": all_content,
+            "lines": lines,
+        }
 
     @staticmethod
     def _categorize_in_grupo_tarifario(content):
