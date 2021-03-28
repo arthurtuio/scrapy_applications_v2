@@ -1,7 +1,7 @@
 import glob
 import os
 
-from project_folder.lib.utils import FolderVariables
+from utils import FolderVariables
 
 
 DOWNLOAD_PATH = FolderVariables.PDF_DOWNLOADS_FOLDER.value
@@ -12,13 +12,15 @@ def rename_scrapy_output_based_in_credentials(credentials):
 
     print("Renaming and fixing scrapy output files types to pdf...")
 
-    uc = credentials["unidade_consumidora"]
-    data_inicial = credentials["mesinicial"] + "_" + credentials["anoinicial"]
-    data_final = credentials["mesfinal"] + "_" + credentials["anofinal"]
+    alias_paroquia = credentials["alias_paroquia"]
+    uc = str(credentials["unidade_consumidora"])
 
-    new_file_name = uc + "_" + data_inicial + "__" + data_final + SELECTED_FORMAT
-
+    index = 0
     for file in _list_all_files_without_extension():
+        index += 1
+
+        new_file_name = alias_paroquia + "__" + uc + "_" + str(index) + SELECTED_FORMAT
+
         try:
             os.rename(file, DOWNLOAD_PATH + new_file_name)
         except OSError as e:

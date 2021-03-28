@@ -1,31 +1,9 @@
-import time
-
-import requests
 import scrapy
-from project_folder.items import DemoDownloaderItem
-from project_folder.lib.utils import CelescUrls, FolderVariables
-from scrapy.utils.response import open_in_browser
+from utils import CelescUrls, FolderVariables
 
-from scrapy.crawler import CrawlerProcess
-
-from scrapy.pipelines.files import FilesPipeline  # no método file_path dessa classe que eu crio o nome do arquivo.
 # como -> https://coderecode.com/download-files-scrapy/ esse tutorial ensina
 
-from database.postgres_connector import PostgresConnector
-from database.repository import CredentialsParoquia
-
-
-def get_first_not_synced_credential_from_db():
-    with PostgresConnector().connect_using_localhost_credentials() as pg_conn:
-        scrapy_paroquia_repository = CredentialsParoquia(pg_conn)
-
-        all_not_synced_credentials = scrapy_paroquia_repository.get_all_not_synced_credentials()
-
-        pg_conn.commit()
-
-    print(f"First Not synced credential: {all_not_synced_credentials[0]}")
-
-    return all_not_synced_credentials[0]
+from database.g_sheets_hook import GSheetsHook
 
 
 class CelescLoginSpider(scrapy.Spider):
@@ -36,18 +14,20 @@ class CelescLoginSpider(scrapy.Spider):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.credentials = get_first_not_synced_credential_from_db()
+        self.credentials = GSheetsHook().get_first_not_synced_row()
 
     def parse(self, response):
+        print(f"self.credentials: {self.credentials}")
+
         self.log('Accessing page: {}'.format(response.url))
 
         yield scrapy.FormRequest(
             url=CelescUrls.URL_AUTENTICACAO.value,
             formdata={
-                'sqUnidadeConsumidora': self.credentials['unidade_consumidora'],
+                'sqUnidadeConsumidora': str(self.credentials['unidade_consumidora']),
                 'tpDocumento': self.credentials['tipo_documento'],
-                'numeroDocumentoCPF': self.credentials['numero_documento'],
-                'numeroDocumentoCNPJ': self.credentials['numero_documento'],
+                'numeroDocumentoCPF': str(self.credentials['numero_documento']),
+                'numeroDocumentoCNPJ': str(self.credentials['numero_documento']),
                 'tipoUsuario': self.credentials['tipo_usuario']
             },
             callback=self.post_password,

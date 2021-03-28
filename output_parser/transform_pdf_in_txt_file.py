@@ -1,6 +1,6 @@
 from tika import parser
 
-from project_folder.lib.utils import FolderVariables
+from utils import FolderVariables
 from project_folder.lib.os_glob_utils import list_all_dir_files
 
 

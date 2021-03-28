@@ -1,6 +1,6 @@
 import pandas as pd
 
-from project_folder.lib.utils import FolderVariables
+from utils import FolderVariables
 
 
 class TransformOutputInCsv:
