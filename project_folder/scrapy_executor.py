@@ -42,7 +42,7 @@ def execute_scrapy():
     time.sleep(10)
 
 
-class ScrapyExecutor:
+class CoreScrapyExecutor:
     def __init__(self, pg_conn=None):
         self.pg_conn = pg_conn or PostgresConnector().connect_using_localhost_credentials()
         self._scrapy_paroquia_repository = None
@@ -86,4 +86,4 @@ class ScrapyExecutor:
 
 
 if __name__ == '__main__':
-    ScrapyExecutor().execute()
+    CoreScrapyExecutor().execute()

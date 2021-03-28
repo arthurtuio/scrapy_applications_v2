@@ -9,9 +9,12 @@ class TransformPdfInTxtFile:
     TXT_FILES_FOLDER = FolderVariables.TXT_FILES_FOLDER.value
 
     def execute(self):
+        print("Initiated TransformPdfInTxtFile...")
+
         for pdf in self._get_all_pdfs():
             pdf_content = self._get_pdf_content_using_tika(pdf)
             self._transform_pdf_in_txt(pdf, pdf_content)
+            print(f"-> Successfully transformed follwing pdf in txt: {pdf}")
 
     def _get_all_pdfs(self):
         return list_all_dir_files(self.PDF_DOWNLOADS_FOLDER)

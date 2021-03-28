@@ -10,6 +10,8 @@ class FaturasTxtParser:
     TXT_FILES_FOLDER = FolderVariables.TXT_FILES_FOLDER.value
 
     def execute(self):
+        print("Initiated FaturasTxtParser...")
+
         faturas_list = []
         
         for fatura in self._load_faturas():
@@ -25,7 +27,7 @@ class FaturasTxtParser:
 
         tarifas_parsed_by_grupo_tarifario = self._parse_according_to_grupo_tarifario(faturas_list)
 
-        TransformOutputInCsv(tarifas_parsed_by_grupo_tarifario).transform_grupo_b_tarifas_in_df()
+        return tarifas_parsed_by_grupo_tarifario
 
     def _load_faturas(self):
         return list_all_dir_files(self.TXT_FILES_FOLDER)
@@ -82,8 +84,8 @@ class FaturasTxtParser:
 
 
 if __name__ == '__main__':
-    print(
-        FaturasTxtParser().execute()
-    )
+    # print(
+    #     FaturasTxtParser().execute()
+    # )
 
     FaturasTxtParser().execute()
