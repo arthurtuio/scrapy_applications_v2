@@ -21,3 +21,4 @@ class FolderVariables(Enum):
     PDF_DOWNLOADS_FOLDER = _base_project_folder() + "project_folder/downloads/"
     SPIDERS_FOLDER = _base_project_folder() + "project_folder/spiders"
     TXT_FILES_FOLDER = _base_project_folder() + "files/txt_files/"
+    CSV_FILES_FOLDER = _base_project_folder() + "files/csv_files/"

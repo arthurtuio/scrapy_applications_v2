@@ -18,15 +18,19 @@ class ParserGrupoB:
         dados_do_faturamento = self._parse_dados_do_faturamento()
         composicao_precos = self._parse_composicao_precos()
 
-        # return {
-        #     **dados_medicao,
-        #     **hist_cons_ener_elet,
-        #     **dados_unidade_consumidora,
-        #     **dados_do_faturamento,
-        #     **composicao_precos,
-        # }
+        # print(dados_do_faturamento)
 
-        print(dados_medicao)
+        output = {
+            **dados_medicao,
+            **hist_cons_ener_elet,
+            **dados_unidade_consumidora,
+            **dados_do_faturamento,
+            **composicao_precos,
+        }
+
+        self._standarize_output(output)
+
+        return output
 
     def _parse_dados_medicao(self):
         dados_medicao = DADOS_MEDICAO_DICT()
@@ -144,4 +148,46 @@ class ParserGrupoB:
 
         #print(alphabetic_params)
         return alphabetic_params
+
+    @staticmethod
+    def _standarize_output(output):
+        add_correcao_monetaria = False
+        add_juros_conta_anterior = False
+        add_multa_conta_anterior = False
+
+        for key in output.keys():
+            if "Correcao Monetaria por Atraso" in key:
+                add_correcao_monetaria = key
+                #print(f"add_correcao_monetaria: {add_correcao_monetaria}")
+
+            if "Juros Conta Anterior" in key:
+                add_juros_conta_anterior = key
+                #print(f"add_juros_conta_anterior: {add_juros_conta_anterior}")
+
+            if "Multa Conta Anterior" in key:
+                add_multa_conta_anterior = key
+                #print(f"add_multa_conta_anterior: {add_multa_conta_anterior}")
+
+        if add_correcao_monetaria:
+            output["Correcao Monetaria por Atraso Valor"] = output[add_correcao_monetaria]
+            output["Correcao Monetaria por Atraso Data"] = add_correcao_monetaria.split(" ")[4]
+            output.pop(add_correcao_monetaria)
+
+        if add_juros_conta_anterior:
+            output["Juros Conta Anterior Valor"] = output[add_juros_conta_anterior]
+            output["Juros Conta Anterior Data"] = add_juros_conta_anterior.split(" ")[3]
+            output.pop(add_juros_conta_anterior)
+
+        if add_multa_conta_anterior:
+            output["Multa Conta Anterior Valor"] = output[add_multa_conta_anterior]
+            output["Multa Conta Anterior Data"] = add_multa_conta_anterior.split(" ")[3]
+            output.pop(add_multa_conta_anterior)
+
+        if output.get("Consumo"):
+            output["Consumo Faturado"] = output["Consumo"][0]
+            output["Consumo Tarifa (R$)"] = output["Consumo"][1]
+            output["Consumo Valor (R$)"] = output["Consumo"][2]
+            output.pop("Consumo")
+
+        return output
 
