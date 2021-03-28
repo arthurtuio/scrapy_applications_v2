@@ -16,7 +16,9 @@ class FaturasTxtParser:
 
             # print(grupo_tarifario)
 
-            self._parse_according_to_grupo_tarifario(grupo_tarifario, content)
+            print(
+                self._parse_according_to_grupo_tarifario(grupo_tarifario, content)
+            )
 
     def _load_faturas(self):
         return list_all_dir_files(self.TXT_FILES_FOLDER)
@@ -44,12 +46,13 @@ class FaturasTxtParser:
         else:
             print("ERRO!")
 
-    def _parse_according_to_grupo_tarifario(self, grupo_tarifario, content):
+    @staticmethod
+    def _parse_according_to_grupo_tarifario(grupo_tarifario, content):
         if grupo_tarifario["grupo_tensao"] == "B":
-            ParserGrupoB(content).execute()
+            return ParserGrupoB(content).execute()
 
         elif grupo_tarifario["grupo_tensao"] == "A4":
-            ParserGrupoA4(content).execute()
+            return ParserGrupoA4(content).execute()
 
         else:
             raise Exception

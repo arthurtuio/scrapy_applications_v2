@@ -41,26 +41,31 @@ def N_DA_UNIDADE_CONSUMIDORA_DICT():
         "VENCIMENTO": None,
         "CONSUMO TOTAL FATURADO": None,
         "VALOR ATÉ O VENCIMENTO": None,
-        "Mensagens": None,
+        "Mensagens:": None,
     }
 
 
-def DADOS_DO_FATURAMENTO_DICT():
-    return {
-        "Consumo": {
-            "Faturado": None,
-            "Tarifa (R$)": None,
-            "Valor (R$)": None,
-        },
-        "Subtotal (R$)": {"Valor (R$)": None},
-    }
-
-
-def LANCAMENTOS_E_SERVICOS_DICT():
-    return {
-        "Cosip": {"Valor (R$)": None},
-        "Subtotal (R$)": {"Valor (R$)": None},
-    }
+# def DADOS_DO_FATURAMENTO_DICT():
+#     return {
+#         "Subtotal (R$)": {"Valor (R$)": None},
+#         "Adic Band. Amarela": {"Valor (R$)": None},
+#         "Consumo": {
+#             "Faturado": None,
+#             "Tarifa (R$)": None,
+#             "Valor (R$)": None,
+#         },
+#
+#     }
+#
+#
+# def LANCAMENTOS_E_SERVICOS_DICT():
+#     return {
+#         "Subtotal (R$)": {"Valor (R$)": None},
+#         "Cosip": {"Valor (R$)": None},
+#         "Correcao Monetaria por Atraso": {"Valor (R$)": None},
+#         "Juros Conta Anterior": {"Valor (R$)": None},
+#         "Multa Conta Anterior": {"Valor (R$)": None},
+#     }
 
 
 def COMPOSICAO_PRECO_DICT():
