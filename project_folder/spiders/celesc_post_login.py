@@ -1,14 +1,10 @@
 import scrapy
 from project_folder.items import DemoDownloaderItem
-from scrapy.utils.response import open_in_browser
 
-from scrapy.crawler import CrawlerProcess
-
-from scrapy.pipelines.files import FilesPipeline  # no método file_path dessa classe que eu crio o nome do arquivo.
 # como -> https://coderecode.com/download-files-scrapy/ esse tutorial ensina
 
-from database.postgres_connector import PostgresConnector
-from database.repository import CredentialsParoquia
+from database.to_be_implemented.postgres_connector import PostgresConnector
+from database.to_be_implemented.repository import CredentialsParoquia
 
 
 def get_first_not_synced_credential_from_db():

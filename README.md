@@ -12,6 +12,7 @@ Repositorio que contém todo a aplicação responsável por:
 Os pipelines podem ser executados de forma separada:
     - CD - Crawl and Download - Pipeline que loga no site da CELESC, e baixa todos os PDFs de 2ª via do cliente.
     - ETL - Extract, Transform and Load - Pipeline que transforma os PDFs num único CSV contendo os dados.
+        - Esse pipeline necessita de uma tabela no google sheets, de acordo com o modelo especificado no `database/g_sheets_config.md`
 
 ## Versão atual ##
 Versão XX.XX

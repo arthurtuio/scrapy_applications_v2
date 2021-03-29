@@ -1,5 +1,5 @@
 from psycopg2.extras import DictCursor
-from database.postgres_connector import PostgresConnector
+from database.to_be_implemented.postgres_connector import PostgresConnector
 
 
 class CredentialsParoquia:
