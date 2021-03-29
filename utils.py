@@ -19,6 +19,9 @@ class GSheetsUtils(Enum):
 
 
 class CelescUrls(Enum):
+    """
+    Não precisa ser editado
+    """
     URL_BASE = _base_url()
     URL_AUTENTICACAO = _base_url() + "AgenciaWeb/autenticar/autenticar.do"
     URL_PASSWORD = _base_url() + "AgenciaWeb/autenticar/validarSenha.do"
@@ -27,6 +30,9 @@ class CelescUrls(Enum):
     
     
 class FolderVariables(Enum):
+    """
+    Precisa ser editado de acordo com seu ambiente
+    """
     PDF_DOWNLOADS_FOLDER = _base_project_folder() + "project_folder/downloads/"
     SPIDERS_FOLDER = _base_project_folder() + "project_folder/spiders"
     TXT_FILES_FOLDER = _base_project_folder() + "files/txt_files/"

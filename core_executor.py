@@ -20,6 +20,10 @@ class CoreExecutor:
         if self.enable_transform_in_csv:
             CorePdfToCsvTransformer().execute()
 
+        if self.enable_upload_in_cloud:
+            pass  # WIP -> dar a opcao de upar apenas os pdfs, e/ou os txts, ou tbm subir nas planilhas do sheets
+            # porque vai ser possivel atualizar dados na planilha do sheets agora com a lib
+
 
 if __name__ == '__main__':
     CoreExecutor().execute()

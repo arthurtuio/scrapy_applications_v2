@@ -9,11 +9,14 @@
 
 import os
 
-from scrapy.settings import Settings
+#from scrapy.settings import Settings
+from scrapy.utils.project import get_project_settings
+
 from utils import FolderVariables
 
+settings = get_project_settings()
 
-settings = Settings()
+#settings = Settings()
 os.environ['SCRAPY_SETTINGS_MODULE'] = 'project_folder.settings'  #
 settings_module_path = os.environ['SCRAPY_SETTINGS_MODULE']
 settings.setmodule(settings_module_path, priority='project')

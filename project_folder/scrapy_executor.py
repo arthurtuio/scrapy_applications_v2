@@ -1,20 +1,26 @@
 import os
-import time
-from scrapy.settings import Settings
+#from project_folder.settings import Settings # antes era from scrapy.settings import Settings
+from scrapy.utils.project import get_project_settings
+
 from project_folder.spiders.celesc_post_login_pdfs import CelescLoginSpider
-from scrapy.crawler import CrawlerProcess
+from scrapy.crawler import CrawlerProcess, CrawlerRunner
 
-from twisted.internet import reactor
-import scrapy
-from scrapy.crawler import CrawlerRunner
-from scrapy.utils.log import configure_logging
-
-from database.postgres_connector import PostgresConnector
-from database.repository import CredentialsParoquia
 from database.g_sheets_hook import GSheetsHook
 
-
 from output_parser.rename_scrapy_output import rename_scrapy_output_based_in_credentials
+
+
+import time
+from twisted.internet import reactor
+from scrapy.utils.log import configure_logging
+from multiprocessing import Process, Queue
+import os
+
+
+
+def _sleep(_, duration=5):
+    print(f'sleeping for: {duration}')
+    time.sleep(duration)  # block here
 
 
 def execute_scrapy():
@@ -23,23 +29,32 @@ def execute_scrapy():
     - https://stackoverflow.com/questions/25170682/running-scrapy-from-script-not-including-pipeline
     - https://stackoverflow.com/questions/32984597/scrapy-attributeerror-settings-object-has-no-attribute-update-settings
     """
+
     spider = CelescLoginSpider  # Infelizmente não posso chamar a classe passando nada de param de entrada :(
-    settings = Settings()
-    print(f"settings: {settings}")
 
-    os.environ['SCRAPY_SETTINGS_MODULE'] = 'project_folder.settings'
-    settings_module_path = os.environ['SCRAPY_SETTINGS_MODULE']
-    settings.setmodule(settings_module_path, priority='project')
+    configure_logging({'LOG_FORMAT': '%(levelname)s: %(message)s'})
 
-    process = CrawlerProcess(settings)
+    def f(q):
+        try:
 
-    process.crawl(spider)
-    process.start()
+            runner = CrawlerRunner()
+            d = runner.crawl(spider)
+            d.addBoth(_sleep)
+            d.addBoth(lambda _: reactor.stop())
+            reactor.run()  # the script will block here until the crawling is finished
+            q.put(None)
 
+        except Exception as e:
+            q.put(e)
 
-#    raise error.ReactorNotRestartable()
-#    twisted.internet.error.ReactorNotRestartable
-    # -> Corrigir esse erro assim> https://stackoverflow.com/questions/41495052/scrapy-reactor-not-restartable
+    q = Queue()
+    p = Process(target=f, args=(q,))
+    p.start()
+    result = q.get()
+    p.join()
+
+    if result is not None:
+        raise result
 
 
 class CoreScrapyExecutor:
