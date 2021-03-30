@@ -1,4 +1,5 @@
-notebooks
+notebooks/
+application/files/txt_files/
 project_folder/downloads/
 project_folder/.ipynb_checkpoints/
 project_folder/scrapy_jupyter.ipynb

@@ -10,11 +10,11 @@ def _base_url():
 
 
 def _base_project_folder():
-    return home_folder + "/scrapy_applications_v2/"
+    return home_folder + "/"
 
 
 class GSheetsUtils(Enum):
-    SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = home_folder + "/autonomus-gide-5aa74b8c0202.json"
+    SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = os.getcwd() + "/autonomus-gide-5aa74b8c0202.json"
     SCOPES = [
         'https://spreadsheets.google.com/feeds',
         'https://www.googleapis.com/auth/spreadsheets'

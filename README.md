@@ -3,10 +3,10 @@
 *Crawl, Download, Extract, Transform and Load Pipeline*
 
 Repositorio que contém todo a aplicação responsável por:
-    - Logar no site da CELESC para determinado cliente usando um Crawler;
-    - Baixar todas as faturas em PDF da 2ªa via para este, usando o mesmo Crawler;
-    - Extrair e transformar os dados destes PDFs;
-    - Carregar estes em um CSV.
+- Logar no site da CELESC para determinado cliente usando um Crawler;
+- Baixar todas as faturas em PDF da 2ªa via para este, usando o mesmo Crawler;
+- Extrair e transformar os dados destes PDFs;
+- Carregar estes em um CSV.
 
 ## Lógica abstrata do algoritmo ##
 Os pipelines podem ser executados de forma separada:
