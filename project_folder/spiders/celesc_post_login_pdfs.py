@@ -1,5 +1,5 @@
 import scrapy
-from utils import CelescUrls, FolderVariables
+from variables_names import CelescUrls, FolderVariables
 
 # como -> https://coderecode.com/download-files-scrapy/ esse tutorial ensina
 

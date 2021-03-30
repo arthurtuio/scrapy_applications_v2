@@ -5,7 +5,7 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-from utils import GSheetsUtils
+from variables_names import GSheetsUtils
 
 
 class GSheetsHook:

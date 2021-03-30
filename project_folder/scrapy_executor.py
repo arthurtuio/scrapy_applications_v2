@@ -1,21 +1,17 @@
-import os
 #from project_folder.settings import Settings # antes era from scrapy.settings import Settings
-from scrapy.utils.project import get_project_settings
 
 from project_folder.spiders.celesc_post_login_pdfs import CelescLoginSpider
-from scrapy.crawler import CrawlerProcess, CrawlerRunner
+from scrapy.crawler import CrawlerRunner
 
 from database.g_sheets_hook import GSheetsHook
 
-from output_parser.rename_scrapy_output import rename_scrapy_output_based_in_credentials
+from utils.rename_scrapy_output import rename_scrapy_output_based_in_credentials
 
 
 import time
 from twisted.internet import reactor
 from scrapy.utils.log import configure_logging
 from multiprocessing import Process, Queue
-import os
-
 
 
 def _sleep(_, duration=5):
@@ -68,6 +64,13 @@ class CoreScrapyExecutor:
         self._rename_output_based_on_credentials(first_not_synced_credential)
 
         GSheetsHook().update_selected_row(first_not_synced_credential)
+
+    def show_results(self):
+        """
+        Metodo para mostrar alguns dados referentes aos arquivos baixados
+        :return:
+        """
+
 
     @staticmethod
     def _rename_output_based_on_credentials(credential):
