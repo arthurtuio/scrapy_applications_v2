@@ -10,7 +10,7 @@ def _base_url():
 
 
 def _base_project_folder():
-    return home_folder + "/personal_projects/clone_scrapy_celesc_v2/scrapy_applications_v2/"
+    return home_folder + "/scrapy_applications_v2/"
 
 
 class GSheetsUtils(Enum):
