@@ -1,8 +1,8 @@
 import streamlit as st
 
-from core_executor import CoreExecutor
-from frontend.streamlit_dash import StreamlitDash
-from utils.rename_scrapy_output import count_number_of_pdfs, generate_csv_to_download
+from application.core_executor import CoreExecutor
+from application.frontend.streamlit_dash import StreamlitDash
+from application.utils.rename_scrapy_output import count_number_of_pdfs, generate_csv_to_download
 
 
 class MainPage:

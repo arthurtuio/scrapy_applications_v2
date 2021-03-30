@@ -1,4 +1,8 @@
+import os
 from enum import Enum
+
+
+home_folder = os.getcwd()
 
 
 def _base_url():
@@ -6,11 +10,11 @@ def _base_url():
 
 
 def _base_project_folder():
-    return "/home/arthur/personal_projects/clone_scrapy_celesc_v2/scrapy_applications_v2/"
+    return home_folder + "/personal_projects/clone_scrapy_celesc_v2/scrapy_applications_v2/"
 
 
 class GSheetsUtils(Enum):
-    SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = "/home/arthur/autonomus-gide-5aa74b8c0202.json"
+    SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = home_folder + "/autonomus-gide-5aa74b8c0202.json"
     SCOPES = [
         'https://spreadsheets.google.com/feeds',
         'https://www.googleapis.com/auth/spreadsheets'
@@ -35,5 +39,5 @@ class FolderVariables(Enum):
     """
     PDF_DOWNLOADS_FOLDER = _base_project_folder() + "project_folder/downloads/"
     SPIDERS_FOLDER = _base_project_folder() + "project_folder/spiders"
-    TXT_FILES_FOLDER = _base_project_folder() + "files/txt_files/"
-    CSV_FILES_FOLDER = _base_project_folder() + "files/csv_files/"
+    TXT_FILES_FOLDER = _base_project_folder() + "application/files/txt_files/"
+    CSV_FILES_FOLDER = _base_project_folder() + "application/files/csv_files/"

@@ -1,5 +1,5 @@
 from project_folder.scrapy_executor import CoreScrapyExecutor
-from output_parser.core_pdf_to_csv_transformer import CorePdfToCsvTransformer
+from application.output_parser.core_pdf_to_csv_transformer import CorePdfToCsvTransformer
 
 
 class CoreExecutor:

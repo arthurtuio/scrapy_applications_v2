@@ -1,6 +1,6 @@
 # Baseado no Postgres Hook
 import psycopg2
-from database.to_be_implemented.db_credentials import local_host_credentials
+from application.database.to_be_implemented.db_credentials import local_host_credentials
 
 
 class PostgresConnector:

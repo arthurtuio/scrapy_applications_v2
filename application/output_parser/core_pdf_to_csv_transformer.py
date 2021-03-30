@@ -1,6 +1,6 @@
-from output_parser.transform_pdf_in_txt_file import TransformPdfInTxtFile
-from output_parser.faturas_txt_parser import FaturasTxtParser
-from output_parser.transform_output_in_df import TransformOutputInCsv
+from application.output_parser.transform_pdf_in_txt_file import TransformPdfInTxtFile
+from application.output_parser.faturas_txt_parser import FaturasTxtParser
+from application.output_parser.transform_output_in_df import TransformOutputInCsv
 
 
 class CorePdfToCsvTransformer:

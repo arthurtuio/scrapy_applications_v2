@@ -1,10 +1,9 @@
 import streamlit as st
-import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 
 
-from utils.rename_scrapy_output import get_output_csv_as_df
+from application.utils.rename_scrapy_output import get_output_csv_as_df
 
 
 class StreamlitDash:

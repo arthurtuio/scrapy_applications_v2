@@ -3,9 +3,9 @@
 from project_folder.spiders.celesc_post_login_pdfs import CelescLoginSpider
 from scrapy.crawler import CrawlerRunner
 
-from database.g_sheets_hook import GSheetsHook
+from application.database.g_sheets_hook import GSheetsHook
 
-from utils.rename_scrapy_output import rename_scrapy_output_based_in_credentials
+from application.utils.rename_scrapy_output import rename_scrapy_output_based_in_credentials
 
 
 import time

@@ -3,7 +3,7 @@ import os
 import base64
 import pandas as pd
 
-from variables_names import FolderVariables
+from application.variables_names import FolderVariables
 
 
 PDF_DOWNLOAD_PATH = FolderVariables.PDF_DOWNLOADS_FOLDER.value

@@ -12,7 +12,7 @@ import os
 #from scrapy.settings import Settings
 from scrapy.utils.project import get_project_settings
 
-from variables_names import FolderVariables
+from application.variables_names import FolderVariables
 
 settings = get_project_settings()
 

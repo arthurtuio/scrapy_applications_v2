@@ -3,8 +3,8 @@ from project_folder.items import DemoDownloaderItem
 
 # como -> https://coderecode.com/download-files-scrapy/ esse tutorial ensina
 
-from database.to_be_implemented.postgres_connector import PostgresConnector
-from database.to_be_implemented.repository import CredentialsParoquia
+from application.database.to_be_implemented.postgres_connector import PostgresConnector
+from application.database.to_be_implemented.repository import CredentialsParoquia
 
 
 def get_first_not_synced_credential_from_db():

@@ -1,7 +1,7 @@
-from variables_names import FolderVariables
+from application.variables_names import FolderVariables
 from project_folder.lib.os_glob_utils import list_all_dir_files
-from output_parser.parsers.parser_grupo_b import ParserGrupoB
-from output_parser.parsers.parser_grupo_a4 import ParserGrupoA4
+from application.output_parser.parsers.parser_grupo_b import ParserGrupoB
+from application.output_parser.parsers.parser_grupo_a4 import ParserGrupoA4
 
 
 class FaturasTxtParser:

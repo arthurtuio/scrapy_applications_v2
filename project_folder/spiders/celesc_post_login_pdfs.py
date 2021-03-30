@@ -1,9 +1,9 @@
 import scrapy
-from variables_names import CelescUrls, FolderVariables
+from application.variables_names import CelescUrls, FolderVariables
 
 # como -> https://coderecode.com/download-files-scrapy/ esse tutorial ensina
 
-from database.g_sheets_hook import GSheetsHook
+from application.database.g_sheets_hook import GSheetsHook
 
 
 class CelescLoginSpider(scrapy.Spider):
