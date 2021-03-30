@@ -19,21 +19,28 @@ Versão XX.XX
 Próxima versão -> Implementação da lógica de ETL para faturas do grupo A4.
 
 ## Principais arquivos do serviço ##
-- `utils.py`: Arquivo usado para configurar as variáveis do seu ambiente -> No futuro vai virar um arquivo de docker pras variaveis de ambiente
-- `core_executor.py`: Quem gerencia todo o pipeline, podendo ser configurado para executar o pipeline de forma parcial ou completa;
 - `main_page.py`: Frontend da aplicação. É esse arquivo que você usará para interagir com a aplicação.
+- `application/core_executor.py`: Quem gerencia todo o pipeline, podendo ser configurado para executar o pipeline de forma parcial ou completa;
+- `application/variables_names.py`: Arquivo usado para configurar as variáveis do seu ambiente. Elas já estão configuradas, mas caso dê algum problema,
+  tente primeiro ver se a causa é aqui.
 
 ## Como instalar na sua máquina via docker ##
-1. Instale docker
-2. Rode o docker e abraço
-Brincadeira vou deixar completinho
+1. Instale docker e docker-compose
+2. Execute o docker, com base no arquivo `Makefile`
 
-### Docker Installation Tutorial ###
+### 1. Docker Installation Tutorial ###
 1. Install docker: https://www.digitalocean.com/community/tutorials/como-instalar-e-usar-o-docker-no-ubuntu-18-04-pt
 2. Install docker-compose: https://docs.docker.com/compose/install/
 
-### Install the app requirements using docker ###
-1. Run `make build`
+### 2. Install the app requirements using Makefile ###
+1. Install -> Run `make build`
+2. Execute application -> Run `make up`
+3. Stop application -> Run `make down`
+4. Remove application (caso você queira apenas) -> `make down`
+
+Opcionais:
+- `make format`: Para formatar o código
+- `make install`: Para apenas instalar o arquivo `requirements.txt`
 
 ## Running on cloud (AWS EC2) ##
 https://towardsdatascience.com/how-to-deploy-a-streamlit-app-using-an-amazon-free-ec2-instance-416a41f69dc3
