@@ -23,7 +23,17 @@ Próxima versão -> Implementação da lógica de ETL para faturas do grupo A4.
 - `core_executor.py`: Quem gerencia todo o pipeline, podendo ser configurado para executar o pipeline de forma parcial ou completa;
 - `main_page.py`: Frontend da aplicação. É esse arquivo que você usará para interagir com a aplicação.
 
-## Como instalar na sua máquina ##
+## Como instalar na sua máquina via docker ##
 1. Instale docker
 2. Rode o docker e abraço
 Brincadeira vou deixar completinho
+
+### Docker Installation Tutorial ###
+1. Install docker: https://www.digitalocean.com/community/tutorials/como-instalar-e-usar-o-docker-no-ubuntu-18-04-pt
+2. Install docker-compose: https://docs.docker.com/compose/install/
+
+### Install the app requirements using docker ###
+1. Run `make build`
+
+## Running on cloud (AWS EC2) ##
+https://towardsdatascience.com/how-to-deploy-a-streamlit-app-using-an-amazon-free-ec2-instance-416a41f69dc3
