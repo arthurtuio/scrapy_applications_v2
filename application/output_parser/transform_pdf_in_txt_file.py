@@ -25,8 +25,9 @@ class TransformPdfInTxtFile:
 
     def _transform_pdf_in_txt(self, pdf, pdf_content):
         file_name = self.TXT_FILES_FOLDER + pdf
+        file_name_txt = file_name.replace(".pdf", ".txt")
 
-        with open(file_name, "w") as fp:
+        with open(file_name_txt, "w") as fp:
             return fp.writelines(pdf_content)
 
 
