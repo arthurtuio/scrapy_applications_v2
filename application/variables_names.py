@@ -13,16 +13,6 @@ def _base_project_folder():
     return home_folder + "/"
 
 
-class GSheetsUtils(Enum):
-    # SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = home_folder + "/autonomus-gide-5aa74b8c0202.json"
-    SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = _base_project_folder() + "/autonomus-gide-5aa74b8c0202.json"
-    SCOPES = [
-        'https://spreadsheets.google.com/feeds',
-        'https://www.googleapis.com/auth/spreadsheets'
-    ]
-    SHEET_URL = "https://docs.google.com/spreadsheets/d/1X3fLRluAt0QSKVdo_GHFo0-Fi0bQvWbRR2rOElPa5OI/edit#gid=0"
-
-
 class CelescUrls(Enum):
     """
     Não precisa ser editado
@@ -43,3 +33,14 @@ class FolderVariables(Enum):
     SPIDERS_FOLDER = PROJECT_FOLDER + "spiders"
     TXT_FILES_FOLDER = _base_project_folder() + "application/files/txt_files/"
     CSV_FILES_FOLDER = _base_project_folder() + "application/files/csv_files/"
+
+
+class GSheetsUtils(Enum):
+    # SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = home_folder + "/autonomus-gide-5aa74b8c0202.json"
+    SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = FolderVariables.PROJECT_FOLDER.value + "autonomus-gide-5aa74b8c0202.json"
+    SCOPES = [
+        'https://spreadsheets.google.com/feeds',
+        'https://www.googleapis.com/auth/spreadsheets'
+    ]
+    SHEET_URL = "https://docs.google.com/spreadsheets/d/1X3fLRluAt0QSKVdo_GHFo0-Fi0bQvWbRR2rOElPa5OI/edit#gid=0"
+
