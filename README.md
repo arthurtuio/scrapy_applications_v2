@@ -15,7 +15,7 @@ Os pipelines podem ser executados de forma separada:
 >- Esse pipeline necessita de uma tabela no google sheets, de acordo com o modelo especificado no `database/g_sheets_config.md`
 
 ## Versão atual ##
-Versão XX.XX
+Versão 1.0
 Próxima versão -> Implementação da lógica de ETL para faturas do grupo A4.
 
 ## Principais arquivos do serviço ##

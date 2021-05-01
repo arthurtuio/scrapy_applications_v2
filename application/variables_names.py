@@ -14,7 +14,8 @@ def _base_project_folder():
 
 
 class GSheetsUtils(Enum):
-    SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = os.getcwd() + "/autonomus-gide-5aa74b8c0202.json"
+    # SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = home_folder + "/autonomus-gide-5aa74b8c0202.json"
+    SERVICE_ACCOUNT_JSON_CREDENTIALS_FILE_LOCATION = _base_project_folder() + "/autonomus-gide-5aa74b8c0202.json"
     SCOPES = [
         'https://spreadsheets.google.com/feeds',
         'https://www.googleapis.com/auth/spreadsheets'
@@ -37,7 +38,8 @@ class FolderVariables(Enum):
     """
     Precisa ser editado de acordo com seu ambiente
     """
-    PDF_DOWNLOADS_FOLDER = _base_project_folder() + "project_folder/downloads/"
-    SPIDERS_FOLDER = _base_project_folder() + "project_folder/spiders"
+    PROJECT_FOLDER = _base_project_folder() + "project_folder/"
+    PDF_DOWNLOADS_FOLDER = PROJECT_FOLDER + "downloads/"
+    SPIDERS_FOLDER = PROJECT_FOLDER + "spiders"
     TXT_FILES_FOLDER = _base_project_folder() + "application/files/txt_files/"
     CSV_FILES_FOLDER = _base_project_folder() + "application/files/csv_files/"
