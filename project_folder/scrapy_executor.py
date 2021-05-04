@@ -65,13 +65,6 @@ class CoreScrapyExecutor:
 
         GSheetsHook().update_selected_row(first_not_synced_credential)
 
-    def show_results(self):
-        """
-        Metodo para mostrar alguns dados referentes aos arquivos baixados
-        :return:
-        """
-
-
     @staticmethod
     def _rename_output_based_on_credentials(credential):
         rename_scrapy_output_based_in_credentials(credential)

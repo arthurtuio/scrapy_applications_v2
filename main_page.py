@@ -80,6 +80,7 @@ class MainPage:
             ```3. Visualizar resultados das faturas adicionadas no CSV```
             
         """)
+
         if st.button("Converter faturas de PDF para CSV"):
             CoreExecutor(enable_transform_in_csv=True).execute()
 
